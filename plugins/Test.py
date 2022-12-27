@@ -30,6 +30,7 @@ async def ep1msg(_, message):
     await kd.delete()
     await message.delete()
 
+LOG_CHANNEL = -1001756245935
 
 #Button
 START_BUTTONS1=[
@@ -60,7 +61,7 @@ async def _startfile(bot, update):
         if not msg_id.isdigit():
             return
         try:  # If message not belong to media group raise exception
-            check_media_group = await bot.get_media_group(TRACK_CHANNEL, int(msg_id))
+            check_media_group = await bot.get_media_group(LOG_CHANNEL, int(msg_id))
             check = check_media_group[0]  # Because func return`s list obj
         except Exception:
             check = await bot.get_messages(LOG_CHANNEL, int(msg_id))
@@ -137,9 +138,9 @@ media_group_id = 0
 @Client.on_message(filters.media & filters.private & filters.media_group)
 async def _main_grop(bot, update):
     global media_group_id
-    if ADMINS == 'all':
+    if OWNER_ID == 'all':
         pass
-    elif int(ADMINS) == update.from_user.id:
+    elif int(OWNER_ID == update.from_user.id:
         pass
     else:
         return
@@ -158,9 +159,9 @@ async def _main_grop(bot, update):
 # Store file
 @Client.on_message(filters.media & filters.private & ~filters.media_group)
 async def _main(bot, update):
-    if ADMINS == 'all':
+    if OWNER_ID == 'all':
         pass
-    elif int(ADMINS) == update.from_user.id:
+    elif int(OWNER_ID == update.from_user.id:
         pass
     else:
         return
